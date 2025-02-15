@@ -1,0 +1,31 @@
+#include <PULSE.h>
+PULSE pulse;
+
+void setup() {
+  pulse.PulseBegin();
+  pulse.setMotorInvert(1, 1);
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    int  str = Serial.read();
+    if (str == '1') {
+      Serial.println("good");
+      pulse.setMotorPowers(87, 90);
+    
+    }
+    if (str == '2') {
+      pulse.setMotorPowers(-87, -90);
+    }
+    if (str == '4') {
+      pulse.setMotorPowers(-80, 80);
+    }
+    if (str == '3') {
+      pulse.setMotorPowers(90, -90);
+    }
+    if (str == '5') {
+      pulse.setMotorPowers(0, 0);
+  }
+  }
+}
